@@ -4,10 +4,10 @@ defmodule Tesla.StatsD.Mixfile do
   def project do
     [
       app: :tesla_statsd,
-      version: "0.1.0",
-      elixir: "~> 1.5",
-      start_permanent: Mix.env == :prod,
-      build_embedded: Mix.env == :prod,
+      version: "0.1.1",
+      elixir: "~> 1.4",
+      start_permanent: Mix.env() == :prod,
+      build_embedded: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       description: description()
@@ -39,11 +39,8 @@ defmodule Tesla.StatsD.Mixfile do
   defp deps do
     [
       {:tesla, "~> 0.9"},
-
       {:mox, "~> 0.3.1", only: :test},
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      {:ex_doc, ">= 0.0.0", only: :dev}
     ]
   end
 end

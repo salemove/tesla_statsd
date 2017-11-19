@@ -6,13 +6,14 @@ defmodule Tesla.StatsDTest do
   defmodule TestClient do
     use Tesla
 
-    adapter Tesla.Mock
+    adapter(Tesla.Mock)
 
     def new(opts \\ []) do
       opts = Keyword.put(opts, :backend, StatsMock)
-      Tesla.build_client [
+
+      Tesla.build_client([
         {Tesla.StatsD, opts}
-      ]
+      ])
     end
   end
 
