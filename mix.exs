@@ -38,7 +38,7 @@ defmodule Tesla.StatsD.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tesla, "~> 0.9"},
+      {:tesla, "~> 1.0"},
       {:mox, "~> 0.3.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]

@@ -1,6 +1,6 @@
 # Tesla.StatsD
 
-`Tesla.StatsD` is an instrumenting middleware for [tesla](https://github.com/teamon/tesla) 
+`Tesla.StatsD` is an instrumenting middleware for [tesla](https://github.com/teamon/tesla)
 HTTP client that submits metrics to StatsD (includes support for Datadog tags).
 
 Documentation can be found at [https://hexdocs.pm/tesla_statsd](https://hexdocs.pm/tesla_statsd).
@@ -23,6 +23,18 @@ Datadog StatsD agent.
 ## Installation
 
 The package can be installed by adding `tesla_statsd` to your list of dependencies in `mix.exs`:
+
+### Tesla 1.x
+
+```elixir
+def deps do
+  [
+    {:tesla_statsd, "~> 0.2.0"}
+  ]
+end
+```
+
+### Tesla 0.9
 
 ```elixir
 def deps do

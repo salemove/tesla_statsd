@@ -50,16 +50,17 @@ defmodule Tesla.StatsD do
     opts = opts || []
     start = System.monotonic_time()
 
-    try do
-      env = Tesla.run(env, next)
-      send_stats(env, elapsed_from(start), opts)
-      env
-    rescue
-      ex in Tesla.Error ->
-        stacktrace = System.stacktrace()
+    result = Tesla.run(env, next)
+
+    case result do
+      {:ok, env} ->
+        send_stats(env, elapsed_from(start), opts)
+
+      {:error, _reason} ->
         send_stats(%{env | status: 0}, elapsed_from(start), opts)
-        reraise ex, stacktrace
     end
+
+    result
   end
 
   defp send_stats(env, elapsed, opts) do
