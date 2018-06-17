@@ -47,11 +47,9 @@ defmodule Tesla.StatsDTest do
       :ok
     end)
 
-    Tesla.Mock.mock(fn _env -> raise %Tesla.Error{message: "connection error"} end)
+    Tesla.Mock.mock(fn env -> {:error, %Tesla.Error{env: env, reason: "connection error"}} end)
 
-    assert_raise Tesla.Error, fn ->
-      TestClient.new() |> TestClient.get("http://test-api/test")
-    end
+    assert {:error, %Tesla.Error{}} = TestClient.new() |> TestClient.get("http://test-api/test")
   end
 
   test "allows configuring metric name" do

@@ -4,13 +4,17 @@ defmodule Tesla.StatsD.Mixfile do
   def project do
     [
       app: :tesla_statsd,
-      version: "0.1.1",
+      version: "0.2.0",
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
       build_embedded: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: description()
+      description: description(),
+      docs: [
+        extras: ["README.md"],
+        main: "readme"
+      ]
     ]
   end
 
@@ -38,7 +42,7 @@ defmodule Tesla.StatsD.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:tesla, "~> 0.9"},
+      {:tesla, "~> 1.0"},
       {:mox, "~> 0.3.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
