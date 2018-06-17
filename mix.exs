@@ -10,7 +10,11 @@ defmodule Tesla.StatsD.Mixfile do
       build_embedded: Mix.env() == :prod,
       deps: deps(),
       package: package(),
-      description: description()
+      description: description(),
+      docs: [
+        extras: ["README.md"],
+        main: "readme"
+      ]
     ]
   end
 
