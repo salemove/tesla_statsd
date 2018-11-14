@@ -43,6 +43,8 @@ defmodule Tesla.StatsD.Mixfile do
   defp deps do
     [
       {:tesla, "~> 1.0"},
+      {:ex_statsd, "~> 0.5", optional: true},
+      {:statix, "~> 1.0", optional: true},
       {:mox, "~> 0.3.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]
