@@ -29,7 +29,7 @@ The package can be installed by adding `tesla_statsd` to your list of dependenci
 ```elixir
 def deps do
   [
-    {:tesla_statsd, "~> 0.2.0"}
+    {:tesla_statsd, "~> 0.3.0"}
   ]
 end
 ```
@@ -46,7 +46,9 @@ end
 
 ## Configuration
 
-  * `:backend` - StatsD backend module. Defaults to `ExStatsD`. A backend must implement `Tesla.StatsD.Backend` behaviour.
+  * `:backend` - StatsD backend module. Defaults to `Tesla.StatsD.Backend.ExStatsD`.
+    A backend must implement `Tesla.StatsD.Backend` behaviour. `Statix` backends are
+    supported by default, just provide a module name that uses `Statix` (`use Statix`).
   * `:metric` - Metric name. Can be ether string or function `(Tesla.Env.t -> String.t)`.
   * `:metric_type` - Metric type. Can be `:histogram` (default) or `:gauge`. See
     [Datadog documentation](https://docs.datadoghq.com/guides/dogstatsd/#data-types).
