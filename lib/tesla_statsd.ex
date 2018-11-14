@@ -15,8 +15,9 @@ defmodule Tesla.StatsD do
 
   ## Configuration
 
-    * `:backend` - StatsD backend module. Defaults to `ExStatsD`. A backend must implement
-      `Tesla.StatsD.Backend` behaviour.
+    * `:backend` - StatsD backend module. Defaults to `Tesla.StatsD.Backend.ExStatsD`.
+      A backend must implement `Tesla.StatsD.Backend` behaviour. `Statix` backends are
+      supported by default, just provide a module name that uses `Statix` (`use Statix`).
     * `:metric` - Metric name. Can be ether string or function `(Tesla.Env.t -> String.t)`.
     * `:metric_type` - Metric type. Can be `:histogram` (default) or `:gauge`. See
       [Datadog documentation](https://docs.datadoghq.com/guides/dogstatsd/#data-types).
@@ -28,7 +29,10 @@ defmodule Tesla.StatsD do
       defmodule AccountsClient do
         use Tesla
 
-        plug Tesla.StatsD, metric: "external.request", tags: ["service:accounts"]
+        plug Tesla.StatsD,
+          metric: "external.request",
+          tags: ["service:accounts"],
+          backend: MyApp.Statix
       end
   """
 
@@ -37,7 +41,7 @@ defmodule Tesla.StatsD do
   @default_options [
     metric: "http.request",
     metric_type: :histogram,
-    backend: ExStatsD,
+    backend: Tesla.StatsD.Backend.ExStatsD,
     sample_rate: 1,
     tags: []
   ]
@@ -73,8 +77,8 @@ defmodule Tesla.StatsD do
     metric_type = Keyword.fetch!(opts, :metric_type)
 
     apply(backend, metric_type, [
-      elapsed,
       metric,
+      elapsed,
       [sample_rate: rate, tags: build_tags(env, tags)]
     ])
   end

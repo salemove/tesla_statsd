@@ -4,7 +4,7 @@ defmodule Tesla.StatsD.Mixfile do
   def project do
     [
       app: :tesla_statsd,
-      version: "0.2.0",
+      version: "0.3.0",
       elixir: "~> 1.4",
       start_permanent: Mix.env() == :prod,
       build_embedded: Mix.env() == :prod,
@@ -43,6 +43,8 @@ defmodule Tesla.StatsD.Mixfile do
   defp deps do
     [
       {:tesla, "~> 1.0"},
+      {:ex_statsd, "~> 0.5", optional: true},
+      {:statix, "~> 1.0", optional: true},
       {:mox, "~> 0.3.1", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev}
     ]

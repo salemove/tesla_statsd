@@ -2,8 +2,7 @@ defmodule Tesla.StatsD.Backend do
   @moduledoc """
   A behaviour for StatsD backend.
 
-  [ExStatsD](https://github.com/CargoSense/ex_statsd) is supported
-  out of box.
+  [Statix](https://github.com/lexmag/statix) is supported out of box.
   """
 
   @type metric :: String.t()
@@ -13,10 +12,10 @@ defmodule Tesla.StatsD.Backend do
   @doc """
   Record a gauge entry
   """
-  @callback gauge(amount, metric, options) :: any
+  @callback gauge(metric, amount, options) :: any
 
   @doc """
   Record a histogram value
   """
-  @callback histogram(amount, metric, options) :: any
+  @callback histogram(metric, amount, options) :: any
 end
