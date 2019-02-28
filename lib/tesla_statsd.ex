@@ -108,7 +108,7 @@ defmodule Tesla.StatsD do
   end
 
   defp elapsed_from(start) do
-    System.convert_time_unit(System.monotonic_time() - start, :native, :milliseconds)
+    System.convert_time_unit(System.monotonic_time() - start, :native, :millisecond)
   end
 
   defp normalize_metric(metric, env) when is_function(metric) do
