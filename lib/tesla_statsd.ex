@@ -42,7 +42,7 @@ defmodule Tesla.StatsD do
     metric: "http.request",
     metric_type: :histogram,
     backend: Tesla.StatsD.Backend.ExStatsD,
-    sample_rate: 1,
+    sample_rate: 1.0,
     tags: []
   ]
 
