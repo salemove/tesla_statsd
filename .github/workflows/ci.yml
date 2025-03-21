@@ -9,7 +9,7 @@ on:
 jobs:
   elixir:
     name: OTP ${{matrix.pair.otp_version}} / Elixir ${{matrix.pair.elixir}}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         include:
